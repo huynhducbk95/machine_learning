@@ -1,0 +1,230 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>web classification</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Free HTML5 Template by FreeHTML5.co"/>
+    <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive"/>
+    <meta name="author" content="FreeHTML5.co"/>
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'> -->
+
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="{% static 'web_classification/css/animate.css' %}">
+    <!-- Icomoon Icon Fonts-->
+    <link rel="stylesheet" href="{% static 'web_classification/css/icomoon.css' %}">
+    <!-- Simple Line Icons -->
+    <link rel="stylesheet" href="{% static 'web_classification/css/simple-line-icons.css' %}">
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" href="{% static 'web_classification/css/bootstrap.css' %}">
+    <!-- Owl Carousel  -->
+    <link rel="stylesheet" href="{% static 'web_classification/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'web_classification/css/owl.theme.default.min.css' %}">
+    <!-- Style -->
+    <link rel="stylesheet" href="{% static 'web_classification/css/style.css' %}">
+
+
+    <!-- Modernizr JS -->
+    <script src="{% static 'web_classification/js/modernizr-2.6.2.min.js' %}"></script>
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+	<script src="{% static 'web_classification/js/respond.min.js' %}"></script>
+	<![endif]-->
+
+</head>
+<body>
+<header role="banner" id="fh5co-header">
+    <div class="fluid-container">
+        <nav class="navbar navbar-default">
+            <div class="navbar-header">
+                <!-- Mobile Toggle Menu Button -->
+                <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse" data-target="#navbar"
+                   aria-expanded="false" aria-controls="navbar"><i></i></a>
+                <a class="navbar-brand" href="index.html">Classification</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="#" data-nav-section="home"><span>Home</span></a></li>
+                    <li><a href="#" data-nav-section="classification"><span>Classcification</span></a></li>
+                    <li><a href="#" data-nav-section="evaluate"><span>Evaluate</span></a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<section id="fh5co-home" data-section="home"
+         style="background-image: url({% static 'web_classification/images/full_image_3.jpg' %});"
+         data-stellar-background-ratio="0.5">
+    <div class="gradient"></div>
+    <div class="container">
+        <div class="text-wrap">
+            <div class="text-inner">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center">
+                        <h1 class="to-animate">Web Classification</h1>
+                        <h2 class="to-animate">Use <b>k-nearest neighbors algorithm</b> and <b>Support vector machine</b></h2>
+                        <div class="call-to-action">
+                            <a href="#" class="demo to-animate" data-nav-section="classification"
+                               id="btn_classification"> <i class="icon-power"></i>
+                                Classification</a>
+                            <a href="#" class="download to-animate" id="evaluate_machine">
+                                <i class="icon-download"></i>
+                                Evaluate</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="fh5co-home" data-section="classification" class="classification_machine"
+         style="background-image: url({% static 'web_classification/images/full_image_3.jpg' %});"
+         data-stellar-background-ratio="0.5">
+    <div class="gradient"></div>
+    <div class="container">
+        <div class="text-wrap">
+            <div class="text-inner " style="padding-top: 5%">
+                <div class="head text-center">
+                    <h1 class="to-animate">Classification</h1>
+                </div>
+                <form class="form-horizontal to-animate">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="comment">Content</label>
+                        <textarea class="form-control" rows="9" id="content_machine"></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="sel1">Choose Alogrithm</label>
+                            <select class="form-control" id="sel1_machine">
+                                <option>KNN</option>
+                                <option>SVM</option>
+                            </select>
+                        </div>
+                        {#                        <div class="col-sm-2"></div>#}
+                        <div class="form-group col-sm-6" style="float: right;">
+                            <label for="sel1">Text feature extraction</label>
+                            <select class="form-control" id="sel2_machine">
+                                <option>Bag of word</option>
+                                <option>TF IDF</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" style="padding-top: 30px; padding-left: 41% ">
+                        <button type="button" class="btn btn-default" id="predict_btn"
+                                onclick="predict()" data-url="{% url 'predict' %}">
+                            Predict
+                        </button>
+                        <button type="reset" class="btn btn-danger">
+                            Reset
+                        </button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="fh5co-home" data-section="evaluate" class="evaluate_learning"
+         style="background-image: url({% static 'web_classification/images/full_image_3.jpg' %});"
+         data-stellar-background-ratio="0.5">
+    <div class="gradient"></div>
+    <div class="container">
+        <div class="text-wrap">
+            <div class="text-inner" id="content_result_machine" style="padding-top: 3%">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">Result</div>
+                            <div class="panel-body text_machine"><span id="result_content_machine"></span></div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Select Solution</div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <select class="selectpicker form-control" id="alogrithm_text">
+                                        <option value="knn_bag_of_word">KNN - Bag of word</option>
+                                        <option value="knn_tf_idf">KNN - TF IDF</option>
+                                        <option value="svm_bag_of_word" >SVM - Bag of word</option>
+                                        <option value="svm_tf_idf">SVM - TF IDF</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Graphic</div>
+                            <div class="panel-body">
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="#vtab1" data-toggle="tab"
+                                           class="text_machine"><span style="font-size: 18px">Confusion matrix</span></a></li>
+                                    <li><a href="#vtab2" data-toggle="tab"
+                                           class="text_machine"><span style="font-size: 18px">precision recall</span></a></li>
+                                    <li><a href="#vtab3" data-toggle="tab" class="text_machine"><span style="font-size: 18px">ROC</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active panel panel-default" id="vtab1">
+                                <div class="panel-body">
+                                    <img id="graphic_1"
+                                         src="{% static 'web_classification/images/knn_bag_of_word/confusion_matrix.png' %}"
+                                         height="500px" width="100%">
+                                </div>
+
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade panel panel-default" id="vtab2">
+                                <div class="panel-body">
+                                    <img id="graphic_2"
+                                         src="{% static 'web_classification/images/knn_bag_of_word/precision_recall.png' %}"
+                                         height="500px" width="100%">
+                                </div>
+
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade in panel panel-default" id="vtab3">
+                                <div class="panel-body">
+                                    <img id="graphic_3"
+                                         src="{% static 'web_classification/images/knn_bag_of_word/ROC.png' %}"
+                                         height="500px" width="100%">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- jQuery -->
+<script src="{% static 'web_classification/js/jquery.min.js' %}"></script>
+<!-- jQuery Easing -->
+<script src="{% static 'web_classification/js/jquery.easing.1.3.js' %}"></script>
+<!-- Bootstrap -->
+<script src="{% static 'web_classification/js/bootstrap.min.js' %}"></script>
+<!-- Waypoints -->
+<script src="{% static 'web_classification/js/jquery.waypoints.min.js' %}"></script>
+<!-- Stellar Parallax -->
+<script src="{% static 'web_classification/js/jquery.stellar.min.js' %}"></script>
+<!-- Owl Carousel -->
+<script src="{% static 'web_classification/js/owl.carousel.min.js' %}"></script>
+<!-- Counters -->
+<script src="{% static 'web_classification/js/jquery.countTo.js' %}"></script>
+<!-- Main JS (Do not remove) -->
+<script src="{% static 'web_classification/js/main.js' %}"></script>
+<script src="{% static 'web_classification/js/base.js' %}"></script>
+
+</body>
+</html>
+
